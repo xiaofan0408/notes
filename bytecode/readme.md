@@ -2,6 +2,10 @@
 
 ## 介绍
 
+1. 字节码
+
+2. class格式
+
 ## 字节码
 
 - [JVM指令码表](http://xiaofan0408.github.io/jvm.html)
@@ -142,6 +146,8 @@ SourceFile: "bytecodeTest.java"
 
 ```
 
+[实例2](./demo2.md)
+
 ## java操作字节码
 
 1. javaagent
@@ -158,12 +164,15 @@ SourceFile: "bytecodeTest.java"
 
 ## 字节码修改技术的应用
 
-1. Aop
+1. 代码生成
+   1. cglib
+   2. fastjson
 
-2. 代码生成
+2. Aop
+   1. spring aop
 
 3. 无侵入APM全链路监控
-
+   1. skywalking
 4. 协程
 
 ## 相关资料
