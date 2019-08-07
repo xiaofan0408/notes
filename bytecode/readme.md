@@ -146,11 +146,25 @@ SourceFile: "bytecodeTest.java"
 
 1. javaagent
 
+    - 由于对字节码修改功能的巨大需求，JDK 从 JDK5 版本开始引入了java.lang.instrument 包。基本的思路是在 JVM 启动的时候添加一个代理，每个代理是一个 jar 包，其 MANIFEST.MF 文件里指定了代理类，这个代理类包含一个 premain 方法。JVM 在类加载时候会先执行代理类的 premain 方法，再执行 Java 程序本身的 main 方法，这就是 premain 名字的来源。在 premain 方法中可以对加载前的 class 文件进行修改。JDK6 还允许 JVM 在启动之后动态添加代理。
+
 2. ASM
 
-3. cglib
+    - ASM 库是一款基于 Java 字节码层面的代码分析和修改工具。ASM 可以直接生产二进制的 class 文件，也可以在类被加载入 JVM 之前动态修改类行为
+    - [ASM官网](https://asm.ow2.io/)
+    - [ASM文档](https://asm.ow2.io/developer-guide.html)
 
 ## 简单例子
+
+## 字节码修改技术的应用
+
+1. Aop
+
+2. 代码生成
+
+3. 无侵入APM全链路监控
+
+4. 协程
 
 ## 相关资料
 
