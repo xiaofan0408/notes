@@ -4,11 +4,46 @@
 
 1. 字节码
 
+    ![机器码](./机器码.png)
+
 2. class格式
+
+    ```text
+    ClassFile {
+        u4 magic;
+        u2 minor_version;
+        u2 major_version;
+        u2 constant_pool_count;
+        cp_info constant_pool[constant_pool_count-1];
+        u2 access_flags;
+        u2 this_class;
+        u2 super_class;
+        u2 interfaces_count;
+        u2 interfaces[interfaces_count];
+        u2 fields_count;
+        field_info fields[fields_count];
+        u2 methods_count;
+        method_info methods[methods_count];
+        u2 attributes_count;
+        attribute_info attributes[attributes_count];
+    }
+    ```
+
+3. 虚拟机
+
+    * 基于栈
+
+        一个基于栈的虚拟机会通过IP来获取操作数，其操作数都是保存在栈数据结构中，从栈
+        中取出数据、计算然后再将结果存入栈中（LIFO，Last in first out）
+    * 基于寄存器
+
+        基于寄存器的虚拟机，它们的操作数是存放在CPU的寄存器的。没有入栈和出栈的操作和概念。但是执行的指令就需要包含操作数的地址了，也就是说，指令必须明确的包含操作数的地址，这不像栈可以用栈指针去操作。
 
 ## 字节码
 
-- [JVM指令码表](http://xiaofan0408.github.io/jvm.html)
+* 字节码指令类型
+
+* [JVM指令码表](http://xiaofan0408.github.io/jvm.html)
 
 ## 查看字节码的方式
 
@@ -50,7 +85,7 @@
 
 ## 实例
 
-使用一个最简单的java程序看下他的字节码，其源代码如下
+通过一个最简单的java程序看下他的字节码，其源代码如下
 
 ```java
 package bytecode;
@@ -152,13 +187,13 @@ SourceFile: "bytecodeTest.java"
 
 1. javaagent
 
-    - 由于对字节码修改功能的巨大需求，JDK 从 JDK5 版本开始引入了java.lang.instrument 包。基本的思路是在 JVM 启动的时候添加一个代理，每个代理是一个 jar 包，其 MANIFEST.MF 文件里指定了代理类，这个代理类包含一个 premain 方法。JVM 在类加载时候会先执行代理类的 premain 方法，再执行 Java 程序本身的 main 方法，这就是 premain 名字的来源。在 premain 方法中可以对加载前的 class 文件进行修改。JDK6 还允许 JVM 在启动之后动态添加代理。
+    * 由于对字节码修改功能的巨大需求，JDK 从 JDK5 版本开始引入了java.lang.instrument 包。基本的思路是在 JVM 启动的时候添加一个代理，每个代理是一个 jar 包，其 MANIFEST.MF 文件里指定了代理类，这个代理类包含一个 premain 方法。JVM 在类加载时候会先执行代理类的 premain 方法，再执行 Java 程序本身的 main 方法，这就是 premain 名字的来源。在 premain 方法中可以对加载前的 class 文件进行修改。JDK6 还允许 JVM 在启动之后动态添加代理。
 
 2. ASM
 
-    - ASM 库是一款基于 Java 字节码层面的代码分析和修改工具。ASM 可以直接生产二进制的 class 文件，也可以在类被加载入 JVM 之前动态修改类行为
-    - [ASM官网](https://asm.ow2.io/)
-    - [ASM文档](https://asm.ow2.io/developer-guide.html)
+    * ASM 库是一款基于 Java 字节码层面的代码分析和修改工具。ASM 可以直接生产二进制的 class 文件，也可以在类被加载入 JVM 之前动态修改类行为
+    * [ASM官网](https://asm.ow2.io/)
+    * [ASM文档](https://asm.ow2.io/developer-guide.html)
 
 ## 简单例子
 
