@@ -10,22 +10,22 @@
 
     ```text
     ClassFile {
-        u4 magic;
-        u2 minor_version;
-        u2 major_version;
-        u2 constant_pool_count;
-        cp_info constant_pool[constant_pool_count-1];
-        u2 access_flags;
-        u2 this_class;
-        u2 super_class;
-        u2 interfaces_count;
-        u2 interfaces[interfaces_count];
-        u2 fields_count;
-        field_info fields[fields_count];
-        u2 methods_count;
-        method_info methods[methods_count];
-        u2 attributes_count;
-        attribute_info attributes[attributes_count];
+        u4 magic;   // 魔数
+        u2 minor_version;  // 次版本号
+        u2 major_version;  // 主版本号
+        u2 constant_pool_count; // 常量池数量
+        cp_info constant_pool[constant_pool_count-1]; // 具体常量池信息
+        u2 access_flags; // 访问标志
+        u2 this_class;  // 类索引
+        u2 super_class;  // 当前类索引
+        u2 interfaces_count; //接口数量
+        u2 interfaces[interfaces_count]; //接口索引
+        u2 fields_count; // 字段数量
+        field_info fields[fields_count]; // 字段表
+        u2 methods_count; // 方法数量
+        method_info methods[methods_count]; // 方法表
+        u2 attributes_count; // 属性数量
+        attribute_info attributes[attributes_count]; // 属性表
     }
     ```
 
@@ -42,6 +42,13 @@
 ## 字节码
 
 * 字节码指令类型
+    将字节码指令按照功能分类，指令主要可以分为如下几类：
+    1. 存储和加载类指令：主要包括load系列指令、store系列指令和ldc、push系列指令，主要用于在局部变量表、操作数栈和常量池三者之间进行数据调度；
+    2. 对象操作指令（创建与读写访问）：比如putfield和getfield就属于读写访问的指令，此外还有putstatic/getstatic，还有new系列指令，以及instanceof等指令。
+    3. 操作数栈管理指令：如pop和dup，他们只对操作数栈进行操作。
+    4. 类型转换指令和运算指令：如add/div/l2i等系列指令，实际上这类指令一般也只对操作数栈进行操作。
+    5. 控制跳转指令：这类里包含常用的if系列指令以及goto类指令。
+    6. 方法调用和返回指令：主要包括invoke系列指令和return系列指令。这类指令也意味这一个方法空间的开辟和结束，即invoke会唤醒一个新的java方法空间（新的栈和局部变量表），而return则意味着这个空间的结束回收。
 
 * [JVM指令码表](http://xiaofan0408.github.io/jvm.html)
 
