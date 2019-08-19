@@ -4,7 +4,8 @@
 
 1. 字节码
 
-    ![机器码](./机器码.png)
+  *  字节码（Byte-code）是一种包含执行程序、由一序列 op 代码/数据对组成的二进制文件。字节码是一种中间码，它比机器码更抽象。它经常被看作是包含一个执行程序的二进制文件，更像一个对象模型。字节码被这样叫是因为通常每个 opcode 是一字节长，但是指令码的长度是变化的。每个指令有从 0 到 255（或十六进制的： 00 到FF)的一字节操作码，被参数例如寄存器或内存地址跟随。
+    ![字节码](./字节码.png)
 
 2. class格式
 
@@ -31,6 +32,8 @@
 
 3. 虚拟机
 
+虚拟机常见的实现方式有两种：Stack based 的和 Register based。比如基于 Stack 的虚拟机有Hotspot JVM、.net CLR，这种基于 Stack 实现虚拟机是一种广泛的实现方法。而基于 Register 的虚拟机有 Lua 语言虚拟机 LuaVM 和 Google 开发的安卓虚拟机 DalvikVM。
+
     * 基于栈
 
         一个基于栈的虚拟机会通过IP来获取操作数，其操作数都是保存在栈数据结构中，从栈
@@ -39,7 +42,7 @@
 
         基于寄存器的虚拟机，它们的操作数是存放在CPU的寄存器的。没有入栈和出栈的操作和概念。但是执行的指令就需要包含操作数的地址了，也就是说，指令必须明确的包含操作数的地址，这不像栈可以用栈指针去操作。
 
-## 字节码
+## 字节码指令
 
 * 字节码指令类型
     将字节码指令按照功能分类，指令主要可以分为如下几类：
@@ -87,6 +90,8 @@
 
     1. github地址: <https://github.com/java-decompiler>
     2. jd-gui地址<https://github.com/java-decompiler/jd-gui>
+
+3. bytecode-viewer
 
 3. idea 插件
 
@@ -195,12 +200,17 @@ SourceFile: "bytecodeTest.java"
 1. javaagent
 
     * 由于对字节码修改功能的巨大需求，JDK 从 JDK5 版本开始引入了java.lang.instrument 包。基本的思路是在 JVM 启动的时候添加一个代理，每个代理是一个 jar 包，其 MANIFEST.MF 文件里指定了代理类，这个代理类包含一个 premain 方法。JVM 在类加载时候会先执行代理类的 premain 方法，再执行 Java 程序本身的 main 方法，这就是 premain 名字的来源。在 premain 方法中可以对加载前的 class 文件进行修改。JDK6 还允许 JVM 在启动之后动态添加代理。
+2. 
 
-2. ASM
+3. ASM
 
-    * ASM 库是一款基于 Java 字节码层面的代码分析和修改工具。ASM 可以直接生产二进制的 class 文件，也可以在类被加载入 JVM 之前动态修改类行为
+    * ASM 是一个 Java 字节码操控框架。它能被用来动态生成类或者增强既有类的功能。ASM 可以直接产生二进制 class 文件，也可以在类被加载入 Java 虚拟机之前动态改变类行为。Java class 被存储在严格格式定义的 .class 文件里，这些类文件拥有足够的元数据来解析类中的所有元素：类名称、方法、属性以及 Java 字节码（指令）。ASM 从类文件中读入信息后，能够改变类行为，分析类信息，甚至能够根据用户要求生成新类。
     * [ASM官网](https://asm.ow2.io/)
     * [ASM文档](https://asm.ow2.io/developer-guide.html)
+
+4. byte buddy
+
+5. javassist 
 
 ## 简单例子
 
@@ -215,6 +225,7 @@ SourceFile: "bytecodeTest.java"
 
 3. 无侵入APM全链路监控
    1. skywalking
+   2. arthas   
 4. 协程
 
 ## 相关资料
