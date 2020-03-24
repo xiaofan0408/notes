@@ -5,7 +5,18 @@
 1. 字节码
 
   *  字节码（Byte-code）是一种包含执行程序、由一序列 op 代码/数据对组成的二进制文件。字节码是一种中间码，它比机器码更抽象。它经常被看作是包含一个执行程序的二进制文件，更像一个对象模型。字节码被这样叫是因为通常每个 opcode 是一字节长，但是指令码的长度是变化的。每个指令有从 0 到 255（或十六进制的： 00 到FF)的一字节操作码，被参数例如寄存器或内存地址跟随。
-    ![字节码](./字节码.png)
+
+  ```text
+
+  public class bytecodeTest {
+
+    public static void main(String[] args) {
+        System.out.println("Hello world");
+    }
+
+  }
+  ```
+  ![字节码](./字节码.png)
 
 2. class格式
 
