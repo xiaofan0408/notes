@@ -112,6 +112,21 @@
     
    volatile常用场景优雅停机 注册中心服务实例心跳可见等,建议大家看下老师面试突击第三季并发部分内容，对上面这些关键字均有硬件级别的讲解
 
+### 资料
+  * 集合
+  
+   来源于老师的架构班，跟老师一起看的源码，总结的
+  链接：http://note.youdao.com/noteshare?id=efd2a3a29d2626acea2b053e56bae5cc
+
+  * 线程池
+
+  来源于老师的架构课，以下是我自己的总结：
+http://note.youdao.com/noteshare?id=e58584311f5cb3b89154fcac6c1d8004&sub=8037451384FE4687AC50C9A16C7C33EB
+
+* 并发
+
+  来源于老师的架构课，下面是自己的总结：
+https://blog.csdn.net/qq_17164811/article/details/107432496
 
 
 ## Redis
@@ -137,6 +152,18 @@ https://gitee.com/shishan100/Java-Interview-Advanced/blob/master/docs/distribute
    ![](./img/redis.jpg)
 
 
+### 资料
+
+* Redis
+
+  1、Redis底层原理从架构班学的，这个我没总结过，就直接看的老师的笔记
+  2、redis和 mysql 双写一致性问题，这个看的老师的面试突击的笔记
+https://gitee.com/shishan100/Java-Interview-Advanced/blob/master/docs/high-concurrency/redis-consistence.md
+
+  分布式锁
+来源于老师的架构课，简单分享两个图
+http://note.youdao.com/s/S0EK0NSx
+
 
 ## 数据库
 
@@ -147,6 +174,14 @@ https://gitee.com/shishan100/Java-Interview-Advanced/blob/master/docs/distribute
 *  给你个sql,你说一下怎么创建索引？索引结构？联合索引为什么用要存储主键id，存主键id的内存地址不行吗？索引计划有哪些指标，你关注哪些指标？你了解mysql哪些锁？都是干嘛的？什么操作会有锁？需要注意什么？
 
    根据具体的sql来创建索引,联合索引最左原则(字段不超过5个),索引个数5个以内 ; 索引结构:b+树叶子节点存储数据页 ; 如果存储地址值需要二次寻址 ;执行计划指标:select_type type 可能使用的索引 优化器实际使用索引等,主要关注连接类型type,索引使用情况和extra中内容 ; mysql锁:全局锁 表锁(显示锁和元数据锁MDL) 临界锁(间隙锁+行锁),锁注意事项主要还是死锁学会通过show engine innodb status来分析死锁案例  这里推荐大家看下儒猿技术窝的mysql专栏，里面有很详细的讲解
+
+
+### 资料
+
+* Mysql
+
+  我是看的救火队长的MySQL专栏，我这里总结了一篇，抛砖引玉，后续的大家可以自己总结一下，自己整理一遍之后，你会发现这些知识脉络都会很清晰的：
+http://note.youdao.com/noteshare?id=41b1f3021980dd84aa37bb110268954d&sub=18CF524AB8C64EB388EF47BE22EA3D64
 
 
 ## JVM
@@ -171,6 +206,15 @@ https://gitee.com/shishan100/Java-Interview-Advanced/blob/master/docs/distribute
   2. 大对象直接进入老年代 
   3. 设置合理的对象年龄阀值; 3天full gc一次不能优化,当时没回答好说了一下升级为zgc,zgc推荐看一下美团技术团队分享文章 https://mp.weixin.qq.com/s/ag5u2EPObx7bZr7hkcrOTg
   ps：CMS和G1问的比较多，大家面试准备的时候多看看
+
+
+### 资料
+
+  
+* 这个把救火队长的jvm吃透了，特别是调优的部分。这个很重要，能拿下的几个offer，这个专栏功不可没。把整个专栏学完后，自己默写一遍才能融汇贯通
+下面这个是我默写的
+https://blog.csdn.net/qq_17164811/article/details/107141112
+
 
 ## Spring
 
@@ -202,6 +246,15 @@ https://gitee.com/shishan100/Java-Interview-Advanced/blob/master/docs/distribute
 * 讲讲分布式事物吧，你熟悉的分布式事物框架，项目中有应用吗？框架的原理是什么？如果让你自己去设计你怎么设计
    
    我:ttc,最终消息一致性，最大努力通知，分别用在什么场景，底层怎么实现的去回答
+
+
+### 资料
+
+*  ByteTCC
+
+  来源于老师的架构课，这个也是个杀手锏，这个我自己总结的不多，大体上看的都是老师的笔记，我就简单分享一下
+http://note.youdao.com/noteshare?id=2bd16f1dc4641721f11c22d8b02085d7&sub=EA30000449C04FA9B6525FEFE5D7AF9E
+
 
 ## 消息队列
 
@@ -238,6 +291,15 @@ https://gitee.com/shishan100/Java-Interview-Advanced/blob/master/docs/distribute
 
    我:从服务注册和发现入手，讲讲eureka的核心原理，二级缓存，心跳机制等
 
+
+### 资料
+
+* SpringCould
+  
+  来源于老师的架构课，老师带着读了一整遍Spring Cloud几个核心组件的源码，这个没经老师允许我不能把太细节的分享出来，就把我自己学习之后的总结分享出来一些
+
+  Spring Cloud可以说是我面试的杀手锏吧，只要问我这个，这轮面试就成功一半了，我拿eureka举例，下面这个是我学完Eureka源码之后自己的总结笔记：
+http://note.youdao.com/noteshare?id=4c615d4a2635339c60d558fe17541f0d&sub=D11A87445C014EAE8F9C23F8D80B9D16
 
 ## 网络
 
